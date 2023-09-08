@@ -1,0 +1,30 @@
+{
+    "name": "philipretl/technical_test_sourcetoad",
+    "description": "A technical test for get the position for senior php developer",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Philipretl\\TechnicalTestSourcetoad\\": "src/"
+        },
+        "files": [
+            "src/resources.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "andres vega",
+            "email": "afelipe.vega@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^2.18"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "symfony/console": "^6.3"
+    }
+}
