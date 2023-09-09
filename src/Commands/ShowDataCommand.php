@@ -2,6 +2,7 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
+use Philipretl\TechnicalTestSourcetoad\DrawConsoleGraphTable;
 use Philipretl\TechnicalTestSourcetoad\DrawConsoleTable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -15,19 +16,35 @@ class ShowDataCommand extends Command
 
     protected function configure()
     {
-        $this->setName('hello-world')
-            ->setDescription('Prints Hello-World!')
-            ->setHelp('Demonstration of custom commands created by Symfony Console component.')
-            ->addArgument('username', InputArgument::REQUIRED, 'Pass the username.');
+        $this->setName('first')
+            ->setDescription('This prints the information on a table!')
+            ->setHelp('Demonstration of custom commands created by Symfony Console component.');
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $console_drawer = new DrawConsoleTable($output);
-
         $table = $console_drawer->buildTable(getUserValues());
-        $table->render();
 
+        $output->writeln('<info>This is the abreviature list: </info>');
+
+        (new Table($output))
+            ->setHeaders([
+                'name',
+                'short_name'
+            ])->addRow([
+                'guest_booking',
+                'g_b'
+            ])->addRow([
+                'guest_account',
+                'g_a'
+            ])
+            ->setVertical()
+            ->render();
+
+        $output->writeln('<info>Table of values: </info>');
+        $table->render();
         return Command::SUCCESS;
     }
 }

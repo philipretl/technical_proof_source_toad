@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DrawConsoleTable implements DrawTable
 {
-    const EMPTY_ROW = "=========";
+    const EMPTY_ROW = "------------";
 
     public function __construct(protected OutputInterface $output)
     {
@@ -22,19 +22,20 @@ class DrawConsoleTable implements DrawTable
 
         $converted_table = array();
 
-        $first_value_parsed = $this->convertToEasyKeys($values[0]);
 
-        $headers = array();
         foreach ($values as $key => $parsed_value) {
             $processed_value = $this->convertToEasyKeys($parsed_value);
             array_push($converted_table, $processed_value);
         }
 
         $keys = $this->getAllKeys($converted_table);
+        $this->fillIncompleteValues($converted_table, $keys);
+        print_r($converted_table);
+        $this->orderKeys($converted_table);
 
+        ksort($keys);
         $table->setHeaders($keys);
 
-        $this->fillIncompleteValues($converted_table, $keys);
         $table->addRows($converted_table);
 
         return $table;
@@ -53,17 +54,21 @@ class DrawConsoleTable implements DrawTable
 
     public function fillIncompleteValues(array &$converted_table, array $all_keys): void
     {
-        foreach ($all_keys as $key){
-            foreach ($converted_table as $item) {
-                //print_r("key: " . $key);
-                if(!array_key_exists($key, $item)){
-                    print_r('no existe:' . $key);
+        foreach ($all_keys as $key) {
+            foreach ($converted_table as &$item) {
+                if (!array_key_exists($key, $item)) {
                     $item[$key] = self::EMPTY_ROW;
                 }
-                print_r($item);
             }
         }
 
+    }
+
+    public function orderKeys(array &$values): void
+    {
+        foreach ($values as &$value) {
+            ksort($value);
+        }
     }
 
     public function convertToEasyKeys($matriz, $parent_key = ''): array
@@ -71,14 +76,15 @@ class DrawConsoleTable implements DrawTable
         $result_array = array();
 
         foreach ($matriz as $key => $value) {
-            $resumend_parent_key = ($parent_key ? $this->convertirString($parent_key) . '.' : '');
-            $new_key = $resumend_parent_key . $key;
-            if (is_array($value) === false) {
-                $result_array[$new_key] = (is_null($value)) ? self::EMPTY_ROW : $value;
-            } else {
-                //$result_array[$key] = '->';
+
+            $resumed_parent_key = ($parent_key ? $this->cutKey($parent_key) . '.' : '');
+            $new_key = $resumed_parent_key . $key;
+
+            if (is_array($value)) {
                 $sub_table = $this->convertToEasyKeys($value[0], $new_key);
                 $result_array = array_merge($result_array, $sub_table);
+            } else {
+                $result_array[$new_key] = (is_null($value)) ? self::EMPTY_ROW : $value;
             }
         }
 
@@ -86,16 +92,13 @@ class DrawConsoleTable implements DrawTable
 
     }
 
-    public function convertirString($cadena)
+    public function cutKey($cadena): string
     {
-        $palabras = explode('_', $cadena); // Divide la cadena en palabras usando el guión bajo como separador
-        $resultado = '';
+        $pattern = '/([a-z])[a-z]*_([a-z])[a-z]*/i';
 
-        foreach ($palabras as $palabra) {
-            $resultado .= substr($palabra, 0, 1); // Agrega la primera letra de cada palabra
-        }
-
-        return $resultado;
+        return preg_replace_callback($pattern, function ($matches) {
+            return $matches[1] . '_' . $matches[2];
+        }, $cadena);
     }
 
 }
