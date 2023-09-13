@@ -16,6 +16,10 @@
             "email": "afelipe.vega@gmail.com"
         }
     ],
+    "require" : {
+        "php" : "^8.1",
+        "symfony/console": "^6.3"
+    },
     "require-dev": {
         "pestphp/pest": "^2.18"
     },
@@ -23,8 +27,5 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
-    },
-    "require": {
-        "symfony/console": "^6.3"
     }
 }

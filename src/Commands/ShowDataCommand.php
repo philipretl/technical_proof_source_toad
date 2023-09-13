@@ -25,7 +25,7 @@ class ShowDataCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $console_drawer = new DrawConsoleTable($output);
-        $table = $console_drawer->buildTable(getUserValues());
+        $table_dto = $console_drawer->buildTable(getUserValues());
 
         $output->writeln('<info>This is the abreviature list: </info>');
 
@@ -44,7 +44,12 @@ class ShowDataCommand extends Command
             ->render();
 
         $output->writeln('<info>Table of values: </info>');
-        $table->render();
+
+        (new Table($output))
+            ->setHeaders($table_dto->cells)
+            ->setRows($table_dto->data)
+            ->render();
+
         return Command::SUCCESS;
     }
 }

@@ -3,6 +3,7 @@
 namespace Philipretl\TechnicalTestSourcetoad;
 
 use Philipretl\TechnicalTestSourcetoad\Concerns\DrawTable;
+use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableSeparator;
@@ -16,10 +17,8 @@ class DrawConsoleTable implements DrawTable
     {
     }
 
-    public function buildTable(array $values): Table
+    public function buildTable(array $values): TableDTO
     {
-        $table = new Table($this->output);
-
         $converted_table = array();
 
 
@@ -30,15 +29,11 @@ class DrawConsoleTable implements DrawTable
 
         $keys = $this->getAllKeys($converted_table);
         $this->fillIncompleteValues($converted_table, $keys);
-        print_r($converted_table);
+
         $this->orderKeys($converted_table);
-
         ksort($keys);
-        $table->setHeaders($keys);
 
-        $table->addRows($converted_table);
-
-        return $table;
+        return new TableDTO($keys, $converted_table);
     }
 
     public function getAllKeys(array $matrix): array
