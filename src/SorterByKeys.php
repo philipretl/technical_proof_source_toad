@@ -9,13 +9,13 @@ class SorterByKeys implements Sorter
 
     public function orderByKeys(array $data, array $keys_for_order): array
     {
-        $sorted_data = $this->quicksort($data, array('guest_id'));
+        $sorted_data = $this->customQuicksort($data, array('guest_id'));
         print_r($sorted_data);
         return $sorted_data;
     }
 
 
-    public function quicksort(array $array, array $sorter_keys)
+    public function customQuicksort(array $array, array $sorter_keys)
     {
         $length = count($array);
 
@@ -36,22 +36,22 @@ class SorterByKeys implements Sorter
              * }**/
             print_r($item[$key_to_validate] . " : " . $pivot_value);
             if ($item[$key_to_validate] < $pivot_value) {
-                print_r("left");
                 $left[] = $item;
             } elseif ($item[$key_to_validate] > $pivot_value) {
-                print_r("derecha");
                 $right[] = $item;
             }
 
-            /*if($item[$key_to_validate] === $pivot){
+            if($item[$key_to_validate] == $pivot_value){
+                print_r("are equals \n");
+                print_r($pivot_value);
                 if(count($sorter_keys) > 1){
-                    //array_shift($sorter_keys);
+                    array_shift($sorter_keys);
                 }
-            }*/
+            }
         }
 
-        $left = $this->quickSort($left, $sorter_keys);
-        $right = $this->quickSort($right, $sorter_keys);
+        $left = $this->customQuicksort($left, $sorter_keys);
+        $right = $this->customQuicksort($right, $sorter_keys);
 
         return array_merge($left, array($array[0]), $right);
     }
