@@ -1,6 +1,6 @@
 <?php
 
-namespace Philipretl\TechnicalTestSourcetoad;
+namespace Philipretl\TechnicalTestSourcetoad\Utils;
 
 use Philipretl\TechnicalTestSourcetoad\Concerns\Sorter;
 use Philipretl\TechnicalTestSourcetoad\Concerns\TableNormalizer;

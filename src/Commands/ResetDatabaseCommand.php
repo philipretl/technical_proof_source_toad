@@ -3,12 +3,8 @@
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Philipretl\TechnicalTestSourcetoad\Config;
-use Philipretl\TechnicalTestSourcetoad\ConsoleTableNormalizer;
 use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
-use Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

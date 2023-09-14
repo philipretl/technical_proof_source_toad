@@ -3,16 +3,14 @@
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Exception;
-use Philipretl\TechnicalTestSourcetoad\ConsoleTableNormalizer;
 use Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource;
-use Philipretl\TechnicalTestSourcetoad\SorterByKeys;
+use Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer;
+use Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use function Laravel\Prompts\multiselect;
-use function Philipretl\TechnicalTestSourcetoad\getUserValues;
 
 class SorterDataCommand extends Command
 {
