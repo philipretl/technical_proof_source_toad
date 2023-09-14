@@ -6,9 +6,21 @@ class ItemModel
 {
     public function __construct(
         public int $id,
-        public float $total_price,
+        public string $name,
+        public string $quantity,
+        public float $price,
         public int $cart_id
     ) {
     }
 
+    public function toArray():array
+    {
+        return [
+          'id' => $this->id,
+          'name' => $this->name,
+          'quantity' => $this->quantity,
+          'price' => $this->price,
+          'cart_id' => $this->cart_id
+        ];
+    }
 }

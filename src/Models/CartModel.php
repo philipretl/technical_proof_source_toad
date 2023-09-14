@@ -11,4 +11,13 @@ class CartModel
         public array $items = []
     ) {
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'last_active' => $this->last_active,
+            'customer_id' => $this->customer_id,
+        ];
+    }
 }

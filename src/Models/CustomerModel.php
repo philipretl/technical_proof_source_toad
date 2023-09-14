@@ -12,6 +12,10 @@ class CustomerModel
     ) {
     }
 
+    public function fullName(){
+        return $this->first_name . ' ' .$this->last_name;
+    }
+
     public function toArray()
     {
         return [

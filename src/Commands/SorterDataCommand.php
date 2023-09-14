@@ -11,6 +11,7 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use function Laravel\Prompts\multiselect;
 use function Philipretl\TechnicalTestSourcetoad\getUserValues;
 
 class SorterDataCommand extends Command
@@ -18,27 +19,41 @@ class SorterDataCommand extends Command
     protected function configure()
     {
         $this->setName('challenge:second')
-            ->addOption(
-                'keys',
-                'k',
-                InputArgument::IS_ARRAY | InputArgument::REQUIRED,
-                'Input the keys to search (separate multiple keys with a space)'
-            )
             ->setDescription('This order the data for the keys provided!');
 
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $inputs = $input->getOption('keys');
 
-        $keys_to_order = explode(',', $inputs ?? 'empty');
+        $keys_to_sort = multiselect(
+            label: 'Select the keys that you want to filter. You can choosse any number',
+            options: [
+                'guest_id' => 'Guest id',
+                'guest_type' => 'Guest type',
+                'middle_name' => 'Middle name',
+                'first_name' => 'First name',
+                'last_name' => 'Last name',
+                'gender' => 'Gender',
+                'g_a.account_id' => 'Guest Account -> Account id',
+                'g_a.account_limit' => 'Guest Account -> Account limit',
+                'g_a.allow_charges' => 'Guest Account -> Allow charges',
+                'g_a.status_id' =>  'Guest Account -> Status id',
+                'g_b.booking_number' =>  'Guest Booking -> Status id',
+                'g_b.end_time' =>  'Guest Booking -> End time',
+                'g_b.is_checked_in' =>  'Guest Booking -> Checked in',
+                'g_b.room_no' =>  'Guest Booking -> Room number',
+                'g_b.ship_code' =>  'Guest Booking -> Ship code',
+                'g_b.start_time' =>  'Guest Booking -> Start time',
+            ],
+            default: ['guest_id']
+        );
 
         (new Table($output))
             ->setHeaders([
                 'keys_to_order',
             ])
-            ->addRow($keys_to_order)
+            ->addRow($keys_to_sort)
             ->setVertical()
             ->render();
 
@@ -61,7 +76,7 @@ class SorterDataCommand extends Command
         $sorter_by_keys = new SorterByKeys(new ConsoleTableNormalizer());
 
         try {
-            $ordered_table_dto = $sorter_by_keys->sortArray(UserDataSource::getValues(), $keys_to_order);
+            $ordered_table_dto = $sorter_by_keys->sortArray(UserDataSource::getValues(), $keys_to_sort);
 
             $output->writeln('<info>Table of values: </info>');
             (new Table($output))
@@ -72,7 +87,7 @@ class SorterDataCommand extends Command
         } catch (Exception $exception) {
             $output->writeln('<error>Some of the keys provided are not valid to sort the data.</error>');
             $output->writeln('<error>Keys for sort received: </error>');
-            $output->writeln($keys_to_order);
+            $output->writeln($keys_to_sort);
             return Command::INVALID;
         }
 

@@ -9,6 +9,7 @@ use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository;
+use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository;
 use Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -37,11 +38,13 @@ class FirstTimeDatabaseCommand extends Command
             $customer_repository = new SQliteCustomerRepository($database->getPdo());
             $address_repository = new SQliteAddressRepository($database->getPdo());
             $cart_repository = new SQliteCartRepository($database->getPdo());
+            $item_repository = new SQliteItemRepository($database->getPdo());
 
             $founder = new SQlitePopulateFirstData(
                 $customer_repository,
                 $address_repository,
-                $cart_repository
+                $cart_repository,
+                $item_repository
             );
 
             $founder->insertFirstData();

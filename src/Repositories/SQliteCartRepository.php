@@ -36,4 +36,31 @@ class SQliteCartRepository implements Contracts\CartRepository
             customer_id: $customer_id
         );
     }
+
+    public function getCartByCustomer(int $customer_id): CartModel
+    {
+        $sql = 'SELECT * FROM carts'
+            . ' WHERE customer_id = :customer_id';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':customer_id' => $customer_id
+        ]);
+
+        $carts = [];
+
+        while ($cart = $stmt->fetchObject()) {
+            $carts[] = new CartModel(
+                id: $cart->id,
+                last_active: (bool) $cart->last_active,
+                customer_id: $cart->customer_id
+            );
+        }
+
+        if(empty($carts)){
+            throw new Exception("The user does not have carts currently.");
+        }
+
+        return $carts[0];
+    }
 }
