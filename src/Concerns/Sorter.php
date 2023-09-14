@@ -6,5 +6,5 @@ use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
 
 interface Sorter
 {
-    public function orderByKeys(array $data, array $keys_for_order): TableDTO;
+    public function sortArray(array $data, array $keys_for_order): TableDTO;
 }

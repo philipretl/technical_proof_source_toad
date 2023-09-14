@@ -35,14 +35,14 @@ function getUserValues(): array
             ],
             [
                 'guest_id' => 176,
-                'guest_type' => 'crew',
-                'first_name' => 'Marco',
+                'guest_type' => 'Andres',
+                'first_name' => 'Vega',
                 'middle_name' => null,
                 'last_name' => 'Burns',
                 'gender' => 'M',
                 'guest_booking' => [
                     [
-                        'booking_number' => 20008683,
+                        'booking_number' => 2,
                         'ship_code' => 'OST',
                         'room_no' => 'A0073',
                         'start_time' => 1438214400,
@@ -68,7 +68,7 @@ function getUserValues(): array
                 'gender' => 'M',
                 'guest_booking' => [
                     [
-                        'booking_number' => 20008683,
+                        'booking_number' => 1,
                         'ship_code' => 'OST',
                         'room_no' => 'A0073',
                         'start_time' => 1438214400,
