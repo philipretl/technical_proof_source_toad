@@ -1,31 +1,29 @@
 {
-    "name": "philipretl/technical_test_sourcetoad",
-    "description": "A technical test for get the position for senior php developer",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "Philipretl\\TechnicalTestSourcetoad\\": "src/"
-        },
-        "files": [
-            "src/resources.php"
-        ]
-    },
-    "authors": [
-        {
-            "name": "andres vega",
-            "email": "afelipe.vega@gmail.com"
-        }
-    ],
-    "require" : {
-        "php" : "^8.1",
-        "symfony/console": "^6.3"
-    },
-    "require-dev": {
-        "pestphp/pest": "^2.18"
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
+  "name": "philipretl/technical_test_sourcetoad",
+  "description": "A technical test for getting Php developer position",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Philipretl\\TechnicalTestSourcetoad\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "andres vega",
+      "email": "afelipe.vega@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "symfony/console": "^6.3",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "pestphp/pest": "^2.18"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
 }

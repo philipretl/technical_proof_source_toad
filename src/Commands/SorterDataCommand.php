@@ -4,6 +4,7 @@ namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Exception;
 use Philipretl\TechnicalTestSourcetoad\ConsoleTableNormalizer;
+use Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource;
 use Philipretl\TechnicalTestSourcetoad\SorterByKeys;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -60,7 +61,7 @@ class SorterDataCommand extends Command
         $sorter_by_keys = new SorterByKeys(new ConsoleTableNormalizer());
 
         try {
-            $ordered_table_dto = $sorter_by_keys->sortArray(getUserValues(), $keys_to_order);
+            $ordered_table_dto = $sorter_by_keys->sortArray(UserDataSource::getValues(), $keys_to_order);
 
             $output->writeln('<info>Table of values: </info>');
             (new Table($output))
