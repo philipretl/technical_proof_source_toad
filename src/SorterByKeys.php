@@ -3,19 +3,21 @@
 namespace Philipretl\TechnicalTestSourcetoad;
 
 use Philipretl\TechnicalTestSourcetoad\Concerns\Sorter;
+use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
+use Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait;
 
 class SorterByKeys implements Sorter
 {
+    use KeysTrait;
 
-    public function orderByKeys(array $data, array $keys_for_order): array
+    public function orderByKeys(array $data, array $keys_for_order): TableDTO
     {
-        $sorted_data = $this->customQuicksort($data, array('guest_id'));
-        print_r($sorted_data);
-        return $sorted_data;
+        $sorted_data = $this->customQuicksort($data, $keys_for_order);
+        return new TableDTO($this->getAllKeys($sorted_data), $sorted_data);
     }
 
 
-    public function customQuicksort(array $array, array $sorter_keys)
+    public function customQuicksort(array $array, array $sorter_keys, bool $are_equal = false)
     {
         $length = count($array);
 
@@ -24,6 +26,11 @@ class SorterByKeys implements Sorter
         }
 
         $pivot_key = $sorter_keys[0];
+
+        if(!array_key_exists($pivot_key, $array[0]) && $are_equal === false){
+            throw new \Exception("The key does not exists");
+        }
+
         $pivot_value = $array[0][$pivot_key];
 
         $left = $right = array();
@@ -31,22 +38,24 @@ class SorterByKeys implements Sorter
         foreach ($array as $key => $item) {
 
             $key_to_validate = $pivot_key;
+
             /**if(strpos($key, $pivot_key)){
              * print_r($pivot_key);
              * }**/
-            print_r($item[$key_to_validate] . " : " . $pivot_value);
+            //print_r($item[$key_to_validate] . " : " . $pivot_value);
             if ($item[$key_to_validate] < $pivot_value) {
                 $left[] = $item;
             } elseif ($item[$key_to_validate] > $pivot_value) {
                 $right[] = $item;
             }
 
-            if($item[$key_to_validate] == $pivot_value){
+            if(($item[$key_to_validate] === $pivot_value) && $key !== 0){
                 print_r("are equals \n");
                 print_r($pivot_value);
                 if(count($sorter_keys) > 1){
                     array_shift($sorter_keys);
                 }
+
             }
         }
 

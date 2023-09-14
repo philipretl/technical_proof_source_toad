@@ -2,9 +2,11 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
+use Exception;
 use Philipretl\TechnicalTestSourcetoad\DrawConsoleTable;
 use Philipretl\TechnicalTestSourcetoad\SorterByKeys;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use function Philipretl\TechnicalTestSourcetoad\getUserValues;
@@ -25,7 +27,22 @@ class SorterDataCommand extends Command
 
         $table_dto = $console_drawer->buildTable(getUserValues());
 
-        $sorter_by_keys->orderByKeys($table_dto->data, array());
+        try {
+            $ordered_table_dto = $sorter_by_keys->orderByKeys($table_dto->data, array('guest_id'));
+            (new Table($output))
+                ->setHeaders($ordered_table_dto->cells)
+                ->setRows($ordered_table_dto->data)
+                ->render();
+
+        }catch (Exception $exception){
+            $output->writeln('<error>Some of the keys provided are not valid to sort the data.</error>');
+            $output->writeln('<info>The next table is the data unsorted.</info>');
+
+            (new Table($output))
+                ->setHeaders($table_dto->cells)
+                ->setRows($table_dto->data)
+                ->render();
+        }
 
         return Command::SUCCESS;
     }

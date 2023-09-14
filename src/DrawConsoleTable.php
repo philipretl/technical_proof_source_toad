@@ -4,6 +4,7 @@ namespace Philipretl\TechnicalTestSourcetoad;
 
 use Philipretl\TechnicalTestSourcetoad\Concerns\DrawTable;
 use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
+use Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableSeparator;
@@ -11,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DrawConsoleTable implements DrawTable
 {
+    use KeysTrait;
+
     const EMPTY_ROW = "------------";
 
     public function __construct(){}
@@ -31,17 +34,6 @@ class DrawConsoleTable implements DrawTable
         ksort($keys);
 
         return new TableDTO($keys, $converted_table);
-    }
-
-    public function getAllKeys(array $matrix): array
-    {
-        $keys = array();
-        foreach ($matrix as $item) {
-            foreach ($item as $key => $value) {
-                $keys[$key] = $key;
-            }
-        }
-        return array_unique($keys);
     }
 
     public function fillIncompleteValues(array &$converted_table, array $all_keys): void
