@@ -3,11 +3,12 @@
 namespace Philipretl\TechnicalTestSourcetoad\Database;
 
 use PDO;
+use Philipretl\TechnicalTestSourcetoad\Database\Contracts\PopulateFirstData;
 use Philipretl\TechnicalTestSourcetoad\Repositories\Contracts\AddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\Contracts\CartRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\Contracts\CustomerRepository;
 
-class InsertFirstData
+class SQlitePopulateFirstData implements PopulateFirstData
 {
     public function __construct(
         protected CustomerRepository $customer_repository,
@@ -16,7 +17,7 @@ class InsertFirstData
     ) {
     }
 
-    public function insertFirstData()
+    public function insertFirstData(): void
     {
         $customer_1 = $this->customer_repository->create('Andres', 'Vega');
         $customer_2 = $this->customer_repository->create('Juan', 'Vega');

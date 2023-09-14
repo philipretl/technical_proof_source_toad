@@ -29,6 +29,7 @@ class EcommerceCommand extends Command
         $database = SQliteConnection::connect(Config::PATH_TO_SQLITE_FILE);
 
         if ($database->getPdo() != null) {
+
             $customer_repository = new SQliteCustomerRepository($database->getPdo());
             $customers = $customer_repository->getAllCustomers();
             $propierties = get_object_vars($customers[0]);

@@ -4,7 +4,7 @@ namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Philipretl\TechnicalTestSourcetoad\Config;
 use Philipretl\TechnicalTestSourcetoad\ConsoleTableNormalizer;
-use Philipretl\TechnicalTestSourcetoad\Database\InsertFirstData;
+use Philipretl\TechnicalTestSourcetoad\Database\SQlitePopulateFirstData;
 use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository;
@@ -38,7 +38,7 @@ class FirstTimeDatabaseCommand extends Command
             $address_repository = new SQliteAddressRepository($database->getPdo());
             $cart_repository = new SQliteCartRepository($database->getPdo());
 
-            $founder = new InsertFirstData(
+            $founder = new SQlitePopulateFirstData(
                 $customer_repository,
                 $address_repository,
                 $cart_repository
