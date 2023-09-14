@@ -2,6 +2,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Philipretl\TechnicalTestSourcetoad\Commands\EcommerceCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\FirstTimeDatabaseCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\ResetDatabaseCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\SorterDataCommand;
@@ -13,4 +14,5 @@ $app->add(new ShowDataCommand());
 $app->add(new SorterDataCommand());
 $app->add(new ResetDatabaseCommand());
 $app->add(new FirstTimeDatabaseCommand());
+$app->add(new EcommerceCommand());
 $app->run();

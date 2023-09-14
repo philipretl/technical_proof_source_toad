@@ -32,4 +32,23 @@ class SQliteCustomerRepository implements Contracts\CustomerRepository
             last_name: $last_name
         );
     }
+
+    public function getAllCustomers(): array
+    {
+        $stmt = $this->pdo->query(
+            'SELECT *' .
+            'FROM customers'
+        );
+
+        $customers = [];
+
+        while ($customer = $stmt->fetchObject()) {
+            $customers[] = new CustomerModel(
+                id: $customer->id,
+                first_name: $customer->first_name,
+                last_name: $customer->last_name
+            );
+        }
+        return $customers;
+    }
 }
