@@ -3,7 +3,7 @@
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Philipretl\TechnicalTestSourcetoad\DrawConsoleGraphTable;
-use Philipretl\TechnicalTestSourcetoad\DrawConsoleTable;
+use Philipretl\TechnicalTestSourcetoad\ConsoleTableNormalizer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,15 +16,15 @@ class ShowDataCommand extends Command
 
     protected function configure()
     {
-        $this->setName('first')
+        $this->setName('challenge:first')
             ->setDescription('This prints the information on a table!');
 
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $console_drawer = new DrawConsoleTable();
-        $table_dto = $console_drawer->buildTable(getUserValues());
+        $console_drawer = new ConsoleTableNormalizer();
+        $table_dto = $console_drawer->normalize(getUserValues());
 
         $output->writeln('<info>This is the abreviature list: </info>');
 

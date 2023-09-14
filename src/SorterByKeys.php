@@ -3,6 +3,7 @@
 namespace Philipretl\TechnicalTestSourcetoad;
 
 use Philipretl\TechnicalTestSourcetoad\Concerns\Sorter;
+use Philipretl\TechnicalTestSourcetoad\Concerns\TableNormalizer;
 use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
 use Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait;
 
@@ -10,16 +11,19 @@ class SorterByKeys implements Sorter
 {
     use KeysTrait;
 
-    const ARE_EQUAL = true;
+    public function __construct(protected TableNormalizer $table_normalizer){}
 
     public function sortArray(array $data, array $keys_for_order): TableDTO
     {
-        $sorted_data = $this->customQuicksort($data, $keys_for_order);
+        $table_dto = $this->table_normalizer->normalize($data);
+
+        $sorted_data = $this->customQuicksort($table_dto->data, $keys_for_order);
+
         return new TableDTO($this->getAllKeys($sorted_data), $sorted_data);
     }
 
 
-    public function customQuicksort(array $array, array $sorter_keys, bool $are_equal = false)
+    public function customQuicksort(array $array, array $sorter_keys)
     {
         $length = count($array);
 
@@ -76,7 +80,7 @@ class SorterByKeys implements Sorter
     {
         array_shift($sorter_keys);
 
-        $tiebreaker = $this->customQuicksort(array($pivot, $current_item), $sorter_keys, self::ARE_EQUAL);
+        $tiebreaker = $this->customQuicksort(array($pivot, $current_item), $sorter_keys);
         $tiebreaker_key = $this->getCompletedKey($current_item, $sorter_keys[0]);
 
         if ($tiebreaker[0][$tiebreaker_key] === $pivot[$tiebreaker_key]) {

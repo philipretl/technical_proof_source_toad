@@ -5,7 +5,7 @@ namespace Philipretl\TechnicalTestSourcetoad\Concerns;
 use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
 use Symfony\Component\Console\Helper\Table;
 
-interface DrawTable
+interface TableNormalizer
 {
-    public function buildTable(array $values): TableDTO;
+    public function normalize(array $values): TableDTO;
 }

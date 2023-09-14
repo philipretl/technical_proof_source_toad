@@ -2,23 +2,19 @@
 
 namespace Philipretl\TechnicalTestSourcetoad;
 
-use Philipretl\TechnicalTestSourcetoad\Concerns\DrawTable;
+use Philipretl\TechnicalTestSourcetoad\Concerns\TableNormalizer;
 use Philipretl\TechnicalTestSourcetoad\DTO\TableDTO;
 use Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableCell;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Output\OutputInterface;
 
-class DrawConsoleTable implements DrawTable
+class ConsoleTableNormalizer implements TableNormalizer
 {
     use KeysTrait;
 
-    const EMPTY_ROW = "------------";
+    const EMPTY_ROW = "<empty>";
 
     public function __construct(){}
 
-    public function buildTable(array $values): TableDTO
+    public function normalize(array $values): TableDTO
     {
         $converted_table = array();
 
