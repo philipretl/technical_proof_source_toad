@@ -2,9 +2,11 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
+use Exception;
 use PDO;
 use Philipretl\TechnicalTestSourcetoad\Config;
 use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
+use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository;
@@ -45,6 +47,7 @@ class EcommerceCommand extends Command
                 options: [
                     'list_users' => 'List Users.',
                     'show_cart_by_customer' => 'Show cart by customer.',
+                    'check_orders' => 'Check Orders',
                     'exit' => 'Exit.'
                 ],
             );
@@ -70,6 +73,9 @@ class EcommerceCommand extends Command
             case 'show_cart_by_customer':
                 $this->showCartByCustomer($output, $pdo);
                 break;
+            case 'check_orders':
+                $this->checOrders($output, $pdo);
+                break;
             default:
                 $output->writeln('<error>The option is not valid or not implemented yet.</error>');
         }
@@ -89,14 +95,18 @@ class EcommerceCommand extends Command
         $table->render();
     }
 
-    public function listUsers(OutputInterface $output, PDO $pdo)
+    public function listUsers(OutputInterface $output, PDO $pdo): void
     {
-        $customers = $this->getAllUsers($pdo);
+        try {
+            $customers = $this->getAllUsers($pdo);
 
-        $properties = get_object_vars($customers[0]);
-        $keys = array_keys($properties);
+            $properties = get_object_vars($customers[0]);
+            $keys = array_keys($properties);
 
-        $this->renderTable('Users', $output, $keys, $customers);
+            $this->renderTable('Users', $output, $keys, $customers);
+        } catch (Exception $exception) {
+            $output->writeln('<error>' . -$exception->getMessage() . '</error>');
+        }
     }
 
     public function getAllUsers(PDO $pdo): array
@@ -132,11 +142,49 @@ class EcommerceCommand extends Command
             $items_repository = new SQliteItemRepository($pdo);
             $items = $items_repository->getAllItemsByCart($cart->id);
 
-            $this->renderTable('Items from cart_id: ' . $cart->id , $output, array_keys($items[0]->toArray()), $items);
+            $this->renderTable('Items from cart_id: ' . $cart->id, $output, array_keys($items[0]->toArray()), $items);
+
+            $checkout = (bool)select(
+                label: 'Do you want to process to checkout ?',
+                options: [
+                    'true' => 'Yes',
+                    'false' => 'No'
+                ]
+            );
+
+            if ($checkout) {
+                $this->checkout($output, $pdo, $customer_id);
+            }
 
         } catch (\Exception $exception) {
             $output->writeln('<error> ' . $exception->getMessage() . '</error>');
         }
 
+    }
+
+    public function checkout(OutputInterface $output, PDO $pdo, int $customer_id)
+    {
+        try {
+            $address_repository = new SQliteAddressRepository($pdo);
+            $addresses = $address_repository->getAddressByCustomer($customer_id);
+
+            foreach ($addresses as $address) {
+                $mapped_addresses[$address->id] = 'id: ' . $address->id . ' - ' . $address->fullAddress();
+            }
+
+            $address_id = select(
+                label: 'What address do you want to calculate the value.',
+                options: $mapped_addresses,
+            );
+
+        } catch (Exception $exception) {
+            $output->writeln('<error> ' . $exception->getMessage() . '</error>');
+        }
+
+    }
+
+    public function checOrders(OutputInterface $output, PDO $pdo)
+    {
+        //TODO: Implement this
     }
 }

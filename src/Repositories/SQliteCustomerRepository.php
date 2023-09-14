@@ -2,6 +2,7 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Repositories;
 
+use Exception;
 use PDO;
 use Philipretl\TechnicalTestSourcetoad\Models\CustomerModel;
 use Philipretl\TechnicalTestSourcetoad\Repositories\Contracts\AddressRepository;
@@ -48,6 +49,10 @@ class SQliteCustomerRepository implements Contracts\CustomerRepository
                 first_name: $customer->first_name,
                 last_name: $customer->last_name
             );
+        }
+
+        if(empty($customers)){
+            throw  new Exception("Does not exist users registered for the ecommerce");
         }
         return $customers;
     }

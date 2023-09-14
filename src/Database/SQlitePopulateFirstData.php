@@ -27,9 +27,18 @@ class SQlitePopulateFirstData implements PopulateFirstData
         $address_1 = $this->address_repository->create(
             line_1: 'Cra 17 55 N 45',
             line_2: 'Casa 25',
-            city: 'Popayan',
-            state: 'Cauca',
+            city: 'popayan',
+            state: 'cauca',
             zip: '190001',
+            customer_id: $customer_1->id
+        );
+
+        $address_2 = $this->address_repository->create(
+            line_1: 'Cra 109 # 76 - 34',
+            line_2: 'Apto - 1211',
+            city: 'bogota',
+            state: 'cundinamarca',
+            zip: '130001',
             customer_id: $customer_1->id
         );
 

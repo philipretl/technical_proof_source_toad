@@ -3,6 +3,7 @@
 namespace Philipretl\TechnicalTestSourcetoad\Database;
 
 use PDO;
+use PDOException;
 
 class SQliteConnection implements Contracts\DataBaseConnection
 {
@@ -11,7 +12,7 @@ class SQliteConnection implements Contracts\DataBaseConnection
 
     public function __construct(string $database_path)
     {
-        $this->pdo = new \PDO("sqlite:" . $database_path);
+        $this->pdo = new PDO("sqlite:" . $database_path);
     }
 
     public static function connect(string $database_path): SQliteConnection
@@ -83,8 +84,30 @@ class SQliteConnection implements Contracts\DataBaseConnection
 
     public function dropTables(): void
     {
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sentenciaSQL = "DROP TABLE IF EXISTS adresses";
-        $this->pdo->exec($sentenciaSQL);
+
+        try {
+
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $commands = [
+                'DROP TABLE IF EXISTS addresses',
+                'DROP TABLE IF EXISTS carts',
+                'DROP TABLE IF EXISTS customers',
+                'DROP TABLE IF EXISTS items',
+                'DROP TABLE IF EXISTS orders',
+
+            ];
+
+            foreach ($commands as $command) {
+
+                $this->pdo->exec($command);
+            }
+
+            print_r("Table 'addresses' dropped successfully");
+        } catch (PDOException $e) {
+            print_r("Error: " . $e->getMessage());
+        }
+
+
     }
 }

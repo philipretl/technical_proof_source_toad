@@ -15,4 +15,8 @@ class AddressModel
     ) {
     }
 
+    public function fullAddress(): string
+    {
+        return $this->line_1 . " - " . $this->line_2 . ", " . $this->city . "/" . $this->state . ". zip: " . $this->zip;
+    }
 }

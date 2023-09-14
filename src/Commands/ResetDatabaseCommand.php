@@ -24,6 +24,7 @@ class ResetDatabaseCommand extends Command
             unlink(Config::PATH_TO_SQLITE_FILE);
             $output->writeln('<info>Database deleting.... </info>');
             $output->writeln('<info>Database delete completed. </info>');
+            sleep(3);
         }
 
         $database = SQliteConnection::connect(Config::PATH_TO_SQLITE_FILE);
@@ -31,6 +32,7 @@ class ResetDatabaseCommand extends Command
         if ($database->getPdo() != null) {
             $database->dropTables();
             $database->createTables();
+            $output->writeln('');
             $output->writeln('<info>Database recreated. </info>');
         } else {
             $output->writeln('<error>Whoops, could not connect to the SQLite database! </error>');
