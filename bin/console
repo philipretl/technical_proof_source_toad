@@ -2,9 +2,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Philipretl\TechnicalTestSourcetoad\Commands\SorterDataCommand;
 use Symfony\Component\Console\Application;
 use Philipretl\TechnicalTestSourcetoad\Commands\ShowDataCommand;
 
 $app = new Application();
 $app->add(new ShowDataCommand());
+$app->add(new SorterDataCommand());
 $app->run();

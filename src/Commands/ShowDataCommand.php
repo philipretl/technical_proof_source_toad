@@ -17,14 +17,13 @@ class ShowDataCommand extends Command
     protected function configure()
     {
         $this->setName('first')
-            ->setDescription('This prints the information on a table!')
-            ->setHelp('Demonstration of custom commands created by Symfony Console component.');
+            ->setDescription('This prints the information on a table!');
 
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $console_drawer = new DrawConsoleTable($output);
+        $console_drawer = new DrawConsoleTable();
         $table_dto = $console_drawer->buildTable(getUserValues());
 
         $output->writeln('<info>This is the abreviature list: </info>');

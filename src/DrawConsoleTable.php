@@ -13,14 +13,11 @@ class DrawConsoleTable implements DrawTable
 {
     const EMPTY_ROW = "------------";
 
-    public function __construct(protected OutputInterface $output)
-    {
-    }
+    public function __construct(){}
 
     public function buildTable(array $values): TableDTO
     {
         $converted_table = array();
-
 
         foreach ($values as $key => $parsed_value) {
             $processed_value = $this->convertToEasyKeys($parsed_value);

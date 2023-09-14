@@ -2,7 +2,7 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Concerns;
 
-interface OrderTable
+interface Sorter
 {
     public function orderByKeys(array $data, array $keys_for_order): array;
 }
