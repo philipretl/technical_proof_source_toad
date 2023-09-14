@@ -2,11 +2,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Symfony\Component\Console\Application;
 use Philipretl\TechnicalTestSourcetoad\Commands\EcommerceCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\FirstTimeDatabaseCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\ResetDatabaseCommand;
 use Philipretl\TechnicalTestSourcetoad\Commands\SorterDataCommand;
-use Symfony\Component\Console\Application;
 use Philipretl\TechnicalTestSourcetoad\Commands\ShowDataCommand;
 
 $app = new Application();

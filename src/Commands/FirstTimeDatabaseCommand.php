@@ -3,8 +3,8 @@
 namespace Philipretl\TechnicalTestSourcetoad\Commands;
 
 use Philipretl\TechnicalTestSourcetoad\Config;
-use Philipretl\TechnicalTestSourcetoad\Database\SQlitePopulateFirstData;
 use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
+use Philipretl\TechnicalTestSourcetoad\Database\SQlitePopulateFirstData;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository;

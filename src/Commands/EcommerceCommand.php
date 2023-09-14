@@ -38,7 +38,7 @@ class EcommerceCommand extends Command
 
         while ($menu_option !== 'exit') {
             $output->writeln('');
-            $output->writeln('<info>Welcome to the fantastic SourceToad Ecommerce.</info>');
+            $output->writeln('<info>Welcome to the SourceToad Ecommerce Dashboard.</info>');
 
             $menu_option = select(
                 label: 'What do you want to do?',
@@ -50,6 +50,7 @@ class EcommerceCommand extends Command
             );
 
             if ($menu_option === 'exit') {
+                $output->writeln('<info>Thanks for be with us!!!</info>');
                 return Command::SUCCESS;
             }
 

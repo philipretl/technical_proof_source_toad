@@ -5,8 +5,6 @@ namespace Philipretl\TechnicalTestSourcetoad\Repositories;
 use Exception;
 use PDO;
 use Philipretl\TechnicalTestSourcetoad\Models\CartModel;
-use Philipretl\TechnicalTestSourcetoad\Models\CustomerModel;
-use Philipretl\TechnicalTestSourcetoad\Repositories\Contracts\ItemRepository;
 use Philipretl\TechnicalTestSourcetoad\Resources\CartDataSource;
 
 class SQliteCartRepository implements Contracts\CartRepository
@@ -32,7 +30,7 @@ class SQliteCartRepository implements Contracts\CartRepository
 
         return new CartModel(
             id: $this->pdo->lastInsertId(),
-            last_active: $last_active,
+            last_active: (bool) $last_active,
             customer_id: $customer_id
         );
     }
