@@ -10,9 +10,11 @@ use Symfony\Component\Console\Application;
 use Philipretl\TechnicalTestSourcetoad\Commands\ShowDataCommand;
 
 $app = new Application();
+
 $app->add(new ShowDataCommand());
 $app->add(new SorterDataCommand());
 $app->add(new ResetDatabaseCommand());
 $app->add(new FirstTimeDatabaseCommand());
 $app->add(new EcommerceCommand());
+
 $app->run();
