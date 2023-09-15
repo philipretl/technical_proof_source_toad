@@ -6,10 +6,18 @@ use Exception;
 use PDO;
 use Philipretl\TechnicalTestSourcetoad\Config;
 use Philipretl\TechnicalTestSourcetoad\Database\SQliteConnection;
+use Philipretl\TechnicalTestSourcetoad\DTO\OrderPricesDTO;
+use Philipretl\TechnicalTestSourcetoad\Models\AddressModel;
+use Philipretl\TechnicalTestSourcetoad\Models\CartModel;
+use Philipretl\TechnicalTestSourcetoad\Models\OrderModel;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository;
 use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository;
+use Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository;
+use Philipretl\TechnicalTestSourcetoad\Services\ColombianCheckout;
+use Philipretl\TechnicalTestSourcetoad\Services\ColombianShippingService;
+use Philipretl\TechnicalTestSourcetoad\Services\Contracts\Checkout;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -93,6 +101,7 @@ class EcommerceCommand extends Command
 
         $output->writeln('');
         $table->render();
+        $output->writeln('');
     }
 
     public function listUsers(OutputInterface $output, PDO $pdo): void
@@ -142,9 +151,11 @@ class EcommerceCommand extends Command
             $items_repository = new SQliteItemRepository($pdo);
             $items = $items_repository->getAllItemsByCart($cart->id);
 
+            $cart->items = $items;
+
             $this->renderTable('Items from cart_id: ' . $cart->id, $output, array_keys($items[0]->toArray()), $items);
 
-            $checkout = (bool)select(
+            $checkout = select(
                 label: 'Do you want to process to checkout ?',
                 options: [
                     'true' => 'Yes',
@@ -152,8 +163,10 @@ class EcommerceCommand extends Command
                 ]
             );
 
+            $checkout = $checkout === 'true' ? true : false;
+
             if ($checkout) {
-                $this->checkout($output, $pdo, $customer_id);
+                $this->checkoutOrder($output, $pdo, $customer_id, $cart);
             }
 
         } catch (\Exception $exception) {
@@ -162,9 +175,10 @@ class EcommerceCommand extends Command
 
     }
 
-    public function checkout(OutputInterface $output, PDO $pdo, int $customer_id)
+    public function checkoutOrder(OutputInterface $output, PDO $pdo, int $customer_id, CartModel $cart)
     {
         try {
+
             $address_repository = new SQliteAddressRepository($pdo);
             $addresses = $address_repository->getAddressByCustomer($customer_id);
 
@@ -172,10 +186,84 @@ class EcommerceCommand extends Command
                 $mapped_addresses[$address->id] = 'id: ' . $address->id . ' - ' . $address->fullAddress();
             }
 
-            $address_id = select(
-                label: 'What address do you want to calculate the value.',
-                options: $mapped_addresses,
-            );
+            $is_calculating = true;
+            while ($is_calculating) {
+                $mapped_addresses[0] = 'Cancel';
+
+                $address_id = select(
+                    label: 'What address do you want to calculate the value.',
+                    options: $mapped_addresses,
+                );
+
+                if ($address_id === 0) {
+                    $is_calculating = false;
+                    break;
+                }
+
+                $selected_address = null;
+
+                foreach ($addresses as $address) {
+                    if ($address->id === $address_id) {
+                        $selected_address = $address;
+                        break;
+                    }
+                }
+
+                $shipping_service = new ColombianShippingService();
+                $order_repository = new SQliteOrderRepository($pdo);
+                $cart_repository = new SQliteCartRepository($pdo);
+                $checkout_service = new ColombianCheckout($shipping_service, $order_repository, $cart_repository);
+
+                $order_prices_dto = $checkout_service->calculatePrices($cart, $selected_address);
+
+                $output->writeln('');
+                $output->writeln('<info>Checkout Resume</info>');
+
+                $this->renderTable(
+                    'Items',
+                    $output,
+                    array_keys($cart->items[0]->toArray()),
+                    $cart->items
+                );
+
+                $this->renderTable(
+                    'Pre-checkout values',
+                    $output,
+                    array_keys($order_prices_dto->toArray()),
+                    array($order_prices_dto)
+                );
+
+                $create_order = select(
+                    label: 'Do you confirm the order ?',
+                    options: [
+                        'true' => 'Yes',
+                        'false' => 'No'
+                    ]
+                );
+
+                $create_order = $create_order === 'true' ? true : false;
+
+                if ($create_order) {
+                    $creted_order = $this->finishtCheckout(
+                        $output,
+                        $pdo,
+                        $cart,
+                        $selected_address,
+                        $order_prices_dto,
+                        $checkout_service
+                    );
+
+                    $this->renderTable(
+                        "Order created",
+                        $output,
+                        array_keys($creted_order->toArray()),
+                        array($creted_order)
+                    );
+                    $is_calculating = false;
+                    break;
+                }
+            }
+
 
         } catch (Exception $exception) {
             $output->writeln('<error> ' . $exception->getMessage() . '</error>');
@@ -183,8 +271,25 @@ class EcommerceCommand extends Command
 
     }
 
-    public function checOrders(OutputInterface $output, PDO $pdo)
+    public function checOrders(OutputInterface $output, PDO $pdo): OrderModel
     {
         //TODO: Implement this
+    }
+
+    public function finishtCheckout(
+        OutputInterface $output,
+        PDO $pdo,
+        CartModel $cart,
+        AddressModel $address,
+        OrderPricesDTO $order_prices_dto,
+        Checkout $checkout_service
+    ) {
+        $order_created = $checkout_service->finishCheckoutProcess(
+            $cart,
+            $address,
+            $order_prices_dto
+        );
+
+        return $order_created;
     }
 }

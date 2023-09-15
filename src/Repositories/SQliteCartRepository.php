@@ -30,7 +30,7 @@ class SQliteCartRepository implements Contracts\CartRepository
 
         return new CartModel(
             id: $this->pdo->lastInsertId(),
-            last_active: (bool) $last_active,
+            last_active: (bool)$last_active,
             customer_id: $customer_id
         );
     }
@@ -38,7 +38,7 @@ class SQliteCartRepository implements Contracts\CartRepository
     public function getCartByCustomer(int $customer_id): CartModel
     {
         $sql = 'SELECT * FROM carts'
-            . ' WHERE customer_id = :customer_id';
+            . ' WHERE customer_id = :customer_id AND last_active = 1';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -50,15 +50,31 @@ class SQliteCartRepository implements Contracts\CartRepository
         while ($cart = $stmt->fetchObject()) {
             $carts[] = new CartModel(
                 id: $cart->id,
-                last_active: (bool) $cart->last_active,
+                last_active: (bool)$cart->last_active,
                 customer_id: $cart->customer_id
             );
         }
 
-        if(empty($carts)){
-            throw new Exception("The user does not have carts currently.");
+        if (empty($carts)) {
+            throw new Exception("The user does not have carts active currently.");
         }
 
         return $carts[0];
+    }
+
+    public function mutateCart(int $cart_id): void
+    {
+        try {
+
+            $sql = 'UPDATE carts SET last_active = 0'
+                . ' WHERE id = :id';
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':id' => $cart_id
+            ]);
+        }catch (\Exception $exception){
+            throw  new Exception("The cart could not be mutated");
+        }
     }
 }

@@ -15,4 +15,18 @@ class OrderModel
         public int $address_id
     ) {
     }
+
+
+    public function toArray():array
+    {
+        return [
+            'id' => $this->id,
+            'tax' => $this->tax,
+            'shipping_rate' => $this->shipping_rate,
+            'subtotal' => $this->sub_total,
+            'cart_id' => $this->cart_id,
+            'customer_id' => $this->customer_id,
+            'address_id' => $this->address_id
+        ];
+    }
 }
