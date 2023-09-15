@@ -53,9 +53,9 @@ class EcommerceCommand extends Command
             $menu_option = select(
                 label: 'What do you want to do?',
                 options: [
-                    'list_users' => 'List Users.',
+                    'list_users' => 'List users.',
                     'show_cart_by_customer' => 'Show cart by customer.',
-                    'check_orders' => 'Check Orders',
+                    'check_orders' => 'Check orders by customer',
                     'exit' => 'Exit.'
                 ],
             );
@@ -89,7 +89,7 @@ class EcommerceCommand extends Command
         }
     }
 
-    public function renderTable(string $title, OutputInterface $output, array $keys, array $items)
+    public function renderTable(OutputInterface $output, string $title, array $keys, array $items)
     {
         $table = new Table($output);
         $table->setHeaders($keys);
@@ -112,7 +112,7 @@ class EcommerceCommand extends Command
             $properties = get_object_vars($customers[0]);
             $keys = array_keys($properties);
 
-            $this->renderTable('Users', $output, $keys, $customers);
+            $this->renderTable($output, 'Users', $keys, $customers);
         } catch (Exception $exception) {
             $output->writeln('<error>' . -$exception->getMessage() . '</error>');
         }
@@ -146,14 +146,14 @@ class EcommerceCommand extends Command
             $cart_repository = new SQliteCartRepository($pdo);
             $cart = $cart_repository->getCartByCustomer($customer_id);
 
-            $this->renderTable('Carts', $output, array_keys($cart->toArray()), array($cart));
+            $this->renderTable($output, 'Carts', array_keys($cart->toArray()), array($cart));
 
             $items_repository = new SQliteItemRepository($pdo);
             $items = $items_repository->getAllItemsByCart($cart->id);
 
             $cart->items = $items;
 
-            $this->renderTable('Items from cart_id: ' . $cart->id, $output, array_keys($items[0]->toArray()), $items);
+            $this->renderTable($output, 'Items from cart_id: ' . $cart->id, array_keys($items[0]->toArray()), $items);
 
             $checkout = select(
                 label: 'Do you want to process to checkout ?',
@@ -220,15 +220,15 @@ class EcommerceCommand extends Command
                 $output->writeln('<info>Checkout Resume</info>');
 
                 $this->renderTable(
-                    'Items',
                     $output,
+                    'Items',
                     array_keys($cart->items[0]->toArray()),
                     $cart->items
                 );
 
                 $this->renderTable(
-                    'Pre-checkout values',
                     $output,
+                    'Pre-checkout values',
                     array_keys($order_prices_dto->toArray()),
                     array($order_prices_dto)
                 );
@@ -254,8 +254,8 @@ class EcommerceCommand extends Command
                     );
 
                     $this->renderTable(
-                        "Order created",
                         $output,
+                        "Order created",
                         array_keys($creted_order->toArray()),
                         array($creted_order)
                     );
@@ -271,9 +271,41 @@ class EcommerceCommand extends Command
 
     }
 
-    public function checOrders(OutputInterface $output, PDO $pdo): OrderModel
+    public function checOrders(OutputInterface $output, PDO $pdo): void
     {
-        //TODO: Implement this
+        try {
+            $order_repository = new SQliteOrderRepository($pdo);
+
+            $customers = $this->getAllUsers($pdo);
+            $mapped_customers = [];
+
+            foreach ($customers as $customer) {
+                $mapped_customers[$customer->id] = 'id: ' . $customer->id . ' - ' . $customer->fullName();
+            }
+
+            $customer_id = select(
+                label: 'What user do you want to get the orders?',
+                options: $mapped_customers,
+            );
+
+            $orders = $order_repository->getOrdersByCustomer($customer_id);
+
+            foreach ($customers as $customer) {
+                if ($customer->id === $customer_id) {
+                    $selected_customer = $customer;
+                    break;
+                }
+            }
+
+            $this->renderTable(
+                $output,
+                'Orders By User - id:' . $customer_id . "/" . $selected_customer->fullName(),
+                array_keys($orders[0]->toArray()),
+                $orders
+            );
+        } catch (Exception $exception) {
+            $output->writeln('<error> ' . $exception->getMessage() . '</error>');
+        }
     }
 
     public function finishtCheckout(

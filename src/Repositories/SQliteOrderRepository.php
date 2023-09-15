@@ -2,6 +2,7 @@
 
 namespace Philipretl\TechnicalTestSourcetoad\Repositories;
 
+use Exception;
 use PDO;
 use Philipretl\TechnicalTestSourcetoad\Models\OrderModel;
 
@@ -66,9 +67,39 @@ class SQliteOrderRepository implements Contracts\OrderRepository
         );
     }
 
-    public function getOrderByCustomer(int $customer_id): OrderModel
+    /**
+     * @return array<OrderModel>
+     */
+    public function getOrdersByCustomer(int $customer_id): array
     {
-        // TODO: Implement getOrderByCustomer() method.
+        $sql = 'SELECT * FROM orders'
+            . ' WHERE customer_id = :customer_id';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':customer_id' => $customer_id
+        ]);
+
+        $orders = [];
+
+        while ($order = $stmt->fetchObject()) {
+            $orders[] = new OrderModel(
+                id: $order->id,
+                tax: $order->tax,
+                shipping_rate: $order->shipping_rate,
+                sub_total: $order->sub_total,
+                total: $order->total,
+                cart_id: $order->cart_id,
+                customer_id: $order->customer_id,
+                address_id: $order->address_id
+            );
+        }
+
+        if (empty($orders)) {
+            throw new Exception("The user does not have orders.");
+        }
+
+        return $orders;
     }
 
     public function getOrder(int $order_id): OrderModel

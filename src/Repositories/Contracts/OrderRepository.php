@@ -8,7 +8,7 @@ interface OrderRepository
 {
     public function getOrder(int $order_id): OrderModel;
 
-    public function getOrderByCustomer(int $customer_id): OrderModel;
+    public function getOrdersByCustomer(int $customer_id): array;
 
     public function create(
         float $tax,
