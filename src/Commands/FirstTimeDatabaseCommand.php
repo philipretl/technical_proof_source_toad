@@ -19,7 +19,7 @@ class FirstTimeDatabaseCommand extends Command
     protected function configure()
     {
         $this->setName('database:first-time')
-            ->setDescription('The ecommerce site!');
+            ->setDescription('This populate the database for the first execution!');
 
     }
 

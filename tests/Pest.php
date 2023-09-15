@@ -11,7 +11,11 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+//uses(Tests\TestCase::class)->in('Feature');
+uses()
+    ->afterEach(function () {
+        Mockery::close();
+    })->in('src');
 
 /*
 |--------------------------------------------------------------------------

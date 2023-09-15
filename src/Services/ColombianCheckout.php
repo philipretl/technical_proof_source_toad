@@ -31,9 +31,12 @@ class ColombianCheckout implements Checkout
             $sub_total += $item->quantity * $item->price;
         }
 
-        $tax_price = (($sub_total * $this->percentage_tax) / 100) + $sub_total;
+        $sub_total = round($sub_total, 2);
 
-        $total = $sub_total + $shipping_cost + $tax_price;
+        $tax_price = (($sub_total * $this->percentage_tax) / 100) + $sub_total;
+        $tax_price = round($tax_price, 2);
+
+        $total = round($sub_total + $shipping_cost + $tax_price, 2);
 
         return new OrderPricesDTO(
             subtotal: $sub_total,

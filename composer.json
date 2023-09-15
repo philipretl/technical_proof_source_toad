@@ -7,6 +7,11 @@
       "Philipretl\\TechnicalTestSourcetoad\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
   "authors": [
     {
       "name": "andres vega",
@@ -15,16 +20,21 @@
   ],
   "require": {
     "php": "^8.1",
-    "symfony/console": "^6.3",
     "ext-pdo": "*",
     "laravel/prompts": "^0.1.7"
   },
   "require-dev": {
-    "pestphp/pest": "^2.18"
+    "pestphp/pest": "^2.18",
+    "mockery/mockery": "^1.6"
   },
   "config": {
     "allow-plugins": {
       "pestphp/pest-plugin": true
     }
+  },
+  "scripts": {
+    "test": "./vendor/bin/pest",
+    "test-coverage" : "./vendor/bin/pest --coverage",
+    "test-coverage-html" : "./vendor/bin/pest --coverage --coverage-html tests/coverage"
   }
 }

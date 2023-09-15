@@ -61,7 +61,7 @@ class EcommerceCommand extends Command
             );
 
             if ($menu_option === 'exit') {
-                $output->writeln('<info>Thanks for be with us!!!</info>');
+                $output->writeln('<info>Thanks for beign with us!!!</info>');
                 return Command::SUCCESS;
             }
 
@@ -109,10 +109,12 @@ class EcommerceCommand extends Command
         try {
             $customers = $this->getAllUsers($pdo);
 
-            $properties = get_object_vars($customers[0]);
-            $keys = array_keys($properties);
-
-            $this->renderTable($output, 'Users', $keys, $customers);
+            $this->renderTable(
+                $output,
+                'Users',
+                array_keys($customers[0]->toArray()),
+                $customers
+            );
         } catch (Exception $exception) {
             $output->writeln('<error>' . -$exception->getMessage() . '</error>');
         }

@@ -1,4 +1,187 @@
 # Sourcetoad Assessment
+### by: Andres Vega
+### afelipe.vega@gmail.com
+
+## Introduction and clarifications
+
+#### * In the first challenge I decided to follow the next steps for completing.
+  * I normalized all the objects for having the same structure on all the objects.
+  * I populated the missing values with \<empty> value.
+  * I sorted the values for the key.
+  * I showed the information with Symfony console.
+
+#### * In the second challenge I decided to follow the next steps for completing.
+  * I normalized all the objects for having the same structure on all the objects.
+  * I populated the missing values with \<empty> value.
+  * I built a custom quickSort algorithm to organize the information based on the provided keys.
+  * I showed the information with Symfony console.
+
+#### * In the third challenge I decided to follow the next steps for completing.
+* I used and populated a SQlite database for saving the information.
+* I built some services to build bussinnes logic.
+* I built repositories to access the information from the database.
+* I build models to represent the information got from the database.
+* I used the EcommerceCommand for managing all the logic via console.
+
+## Requirements
+
+* Docker
+* Docker Compose
+
+## Start the project
+
+Execute 
+
+```shell
+  docker compose up -d
+```
+
+This will build a container with sourcetoad name
+
+This container uses Php 8.1, xdebug, composer and other extensions for the project.
+
+### Install dependencies
+
+#### Enter inside the container:
+```bash
+  docker exec -it sourcetoad bash
+  cd sourcetoad
+```
+
+#### Inside the container execute:
+```bash
+  composer install
+```
+
+
+## How Works the features.
+
+I decided to take an approach based on the console for execution.
+I'm using the Laravel Prompts package to build interactive console commands.
+
+The app starts in the 'bin' folder when I built a simple console app that begins
+with the following command inside the app folder:
+
+```
+  bin/console 
+```
+
+### Console output:
+
+![image](img/console.png)
+
+### How execute the commands
+
+### Enter inside the container
+
+```bash
+  docker exec -it sourcetoad bash
+  cd sourcetoad
+```
+
+### Database commands
+
+#### * This resets the database for cleaning all the base data for the third challenge
+```shell
+  bin/console database:reset
+```
+
+#### * This populates the database for the firts execution for the third challenge
+```shell
+  bin/console database:first-time
+```
+
+### Challenge commands
+
+#### * This prints the information on a table.
+```shell
+  bin/console challenge:first
+```
+
+![image](img/first-challenge.png)
+
+#### * This order the data for the keys provided (you should select on execution)
+```shell
+  bin/console challenge:second
+```
+
+![image](img/second-challenge_1.png)
+
+![image](img/second-challenge_3.png)
+
+![image](img/second-challenge_2.png)
+
+In that example I chosen via Laravel promts what is the key that I want to order
+In this case I select to organice via Guest Id and Last name
+
+
+#### * This order the data for the keys provided (you should select on execution)
+
+```shell
+  bin/console challenge:third
+```
+
+#### - menu
+
+![image](img/third-challenge_menu.png)
+
+#### - list users
+
+![image](img/third-challenge_list_users.png)
+
+
+#### - show cart by customer
+
+![image](img/third-challenge_cart.png)a
+
+
+#### - checkout review
+
+![image](img/third-challenge_checkout_review.png)
+
+
+#### - checkout
+
+![image](img/third-challenge_checkout.png)
+
+#### - review orders by user
+
+![image](img/third-challenge_review_orders_by_user.png)
+
+## Unit Test
+
+### Enter inside the container
+```bash
+  docker exec -it sourcetoad bash
+  cd sourcetoad
+```
+
+### Executing the unit test suite
+
+```bash
+  composer test
+```
+
+### Executing the unit test suite with coverage
+
+```bash
+  composer test-coverage
+```
+
+### Executing the unit test suite with coverage and generates a html file for checking in a visual way
+
+```bash
+  composer test-coverage-html
+```
+
+This last command will generate a new folder that have all the files for checking
+what part of the code has or not coverage.
+
+![image](img/coverage.png)
+
+### ----------------------------------------------------------------------------
+
+# Challenge ->
 
 **Note: Simple console output is acceptable and desired for the below questions.**
 

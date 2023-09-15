@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/sourcetoad/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=10.1.5" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=10.1.5" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=10.1.5" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/html/sourcetoad/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DTO/TableDTO.php.html#5">Philipretl\TechnicalTestSourcetoad\DTO\TableDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CartModel.php.html#5">Philipretl\TechnicalTestSourcetoad\Models\CartModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CustomerModel.php.html#5">Philipretl\TechnicalTestSourcetoad\Models\CustomerModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/OrderModel.php.html#5">Philipretl\TechnicalTestSourcetoad\Models\OrderModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#10">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#10">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#11">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#9">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Resources/UserDataSource.php.html#6">Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#9">Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#10">Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Traits/KeysTrait.php.html#5">Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/ItemModel.php.html#5">Philipretl\TechnicalTestSourcetoad\Models\ItemModel</a></td><td class="text-right">12%</td></tr>
+       <tr><td><a href="DTO/OrderPricesDTO.php.html#5">Philipretl\TechnicalTestSourcetoad\DTO\OrderPricesDTO</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Models/AddressModel.php.html#5">Philipretl\TechnicalTestSourcetoad\Models\AddressModel</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Repositories/SQliteAddressRepository.php.html#9">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository</a></td><td class="text-right">51%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#9">Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#10">Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#10">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#9">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#10">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#11">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Traits/KeysTrait.php.html#5">Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteAddressRepository.php.html#9">Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository</a></td><td class="text-right">7</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DTO/OrderPricesDTO.php.html#15"><abbr title="Philipretl\TechnicalTestSourcetoad\DTO\OrderPricesDTO::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTO/TableDTO.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\DTO\TableDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/AddressModel.php.html#18"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\AddressModel::fullAddress">fullAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CartModel.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\CartModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CartModel.php.html#15"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\CartModel::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CustomerModel.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\CustomerModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CustomerModel.php.html#15"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\CustomerModel::fullName">fullName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/CustomerModel.php.html#19"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\CustomerModel::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/ItemModel.php.html#16"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\ItemModel::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/OrderModel.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\OrderModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/OrderModel.php.html#20"><abbr title="Philipretl\TechnicalTestSourcetoad\Models\OrderModel::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteAddressRepository.php.html#50"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository::getAddressByCustomer">getAddressByCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#12"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#19"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#38"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::getCartByCustomer">getCartByCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#65"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::mutateCart">mutateCart</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#13"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#18"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#37"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository::getAllCustomers">getAllCustomers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#14"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#20"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#46"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository::getAllItemsByCart">getAllItemsByCart</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#12"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#17"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#73"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository::getOrdersByCustomer">getOrdersByCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#105"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository::getOrder">getOrder</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Resources/UserDataSource.php.html#9"><abbr title="Philipretl\TechnicalTestSourcetoad\Resources\UserDataSource::getValues">getValues</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#17"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::normalize">normalize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#35"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::fillIncompleteValues">fillIncompleteValues</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#47"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::orderKeys">orderKeys</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#54"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::convertToEasyKeys">convertToEasyKeys</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#75"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::cutKey">cutKey</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#16"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::sortArray">sortArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#26"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::customQuicksort">customQuicksort</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#67"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::getCompletedKey">getCompletedKey</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#79"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::tiebreaker">tiebreaker</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Traits/KeysTrait.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait::getAllKeys">getAllKeys</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Utils/SorterByKeys.php.html#26"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::customQuicksort">customQuicksort</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#54"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::convertToEasyKeys">convertToEasyKeys</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#35"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::fillIncompleteValues">fillIncompleteValues</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repositories/SQliteAddressRepository.php.html#50"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteAddressRepository::getAddressByCustomer">getAddressByCustomer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#38"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::getCartByCustomer">getCartByCustomer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteCustomerRepository.php.html#37"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCustomerRepository::getAllCustomers">getAllCustomers</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteItemRepository.php.html#46"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteItemRepository::getAllItemsByCart">getAllItemsByCart</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteOrderRepository.php.html#73"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteOrderRepository::getOrdersByCustomer">getOrdersByCustomer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#67"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::getCompletedKey">getCompletedKey</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Traits/KeysTrait.php.html#7"><abbr title="Philipretl\TechnicalTestSourcetoad\Traits\KeysTrait::getAllKeys">getAllKeys</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repositories/SQliteCartRepository.php.html#65"><abbr title="Philipretl\TechnicalTestSourcetoad\Repositories\SQliteCartRepository::mutateCart">mutateCart</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#17"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::normalize">normalize</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/ConsoleTableNormalizer.php.html#47"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\ConsoleTableNormalizer::orderKeys">orderKeys</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/SorterByKeys.php.html#79"><abbr title="Philipretl\TechnicalTestSourcetoad\Utils\SorterByKeys::tiebreaker">tiebreaker</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.5</a> using <a href="https://www.php.net/" target="_top">PHP 8.1.23</a> and <a href="https://phpunit.de/">PHPUnit 10.3.4</a> at Fri Sep 15 18:23:29 UTC 2023.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=10.1.5" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=10.1.5" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=10.1.5" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([12,0,2,0,0,0,2,0,0,0,0,3], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([37,0,0,0,0,0,0,0,0,0,0,11], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"Config.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Config<\/a>"],[14.285714285714285,2,"<a href=\"DTO\/OrderPricesDTO.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\DTO\\OrderPricesDTO<\/a>"],[0,1,"<a href=\"DTO\/TableDTO.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\DTO\\TableDTO<\/a>"],[50,2,"<a href=\"Models\/AddressModel.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Models\\AddressModel<\/a>"],[0,2,"<a href=\"Models\/CartModel.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Models\\CartModel<\/a>"],[0,3,"<a href=\"Models\/CustomerModel.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Models\\CustomerModel<\/a>"],[12.5,2,"<a href=\"Models\/ItemModel.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Models\\ItemModel<\/a>"],[0,2,"<a href=\"Models\/OrderModel.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Models\\OrderModel<\/a>"],[51.21951219512195,5,"<a href=\"Repositories\/SQliteAddressRepository.php.html#9\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteAddressRepository<\/a>"],[0,7,"<a href=\"Repositories\/SQliteCartRepository.php.html#10\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCartRepository<\/a>"],[0,5,"<a href=\"Repositories\/SQliteCustomerRepository.php.html#10\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCustomerRepository<\/a>"],[0,5,"<a href=\"Repositories\/SQliteItemRepository.php.html#11\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteItemRepository<\/a>"],[0,6,"<a href=\"Repositories\/SQliteOrderRepository.php.html#9\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteOrderRepository<\/a>"],[0,1,"<a href=\"Resources\/UserDataSource.php.html#6\">Philipretl\\TechnicalTestSourcetoad\\Resources\\UserDataSource<\/a>"],[100,4,"<a href=\"Services\/ColombianCheckout.php.html#14\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianCheckout<\/a>"],[100,1,"<a href=\"Services\/ColombianShippingService.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianShippingService<\/a>"],[0,15,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#9\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer<\/a>"],[0,15,"<a href=\"Utils\/SorterByKeys.php.html#10\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys<\/a>"],[0,3,"<a href=\"Traits\/KeysTrait.php.html#5\">Philipretl\\TechnicalTestSourcetoad\\Traits\\KeysTrait<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"DTO\/OrderPricesDTO.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\DTO\\OrderPricesDTO::__construct<\/a>"],[0,1,"<a href=\"DTO\/OrderPricesDTO.php.html#15\">Philipretl\\TechnicalTestSourcetoad\\DTO\\OrderPricesDTO::toArray<\/a>"],[0,1,"<a href=\"DTO\/TableDTO.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\DTO\\TableDTO::__construct<\/a>"],[100,1,"<a href=\"Models\/AddressModel.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Models\\AddressModel::__construct<\/a>"],[0,1,"<a href=\"Models\/AddressModel.php.html#18\">Philipretl\\TechnicalTestSourcetoad\\Models\\AddressModel::fullAddress<\/a>"],[0,1,"<a href=\"Models\/CartModel.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Models\\CartModel::__construct<\/a>"],[0,1,"<a href=\"Models\/CartModel.php.html#15\">Philipretl\\TechnicalTestSourcetoad\\Models\\CartModel::toArray<\/a>"],[0,1,"<a href=\"Models\/CustomerModel.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Models\\CustomerModel::__construct<\/a>"],[0,1,"<a href=\"Models\/CustomerModel.php.html#15\">Philipretl\\TechnicalTestSourcetoad\\Models\\CustomerModel::fullName<\/a>"],[0,1,"<a href=\"Models\/CustomerModel.php.html#19\">Philipretl\\TechnicalTestSourcetoad\\Models\\CustomerModel::toArray<\/a>"],[100,1,"<a href=\"Models\/ItemModel.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Models\\ItemModel::__construct<\/a>"],[0,1,"<a href=\"Models\/ItemModel.php.html#16\">Philipretl\\TechnicalTestSourcetoad\\Models\\ItemModel::toArray<\/a>"],[0,1,"<a href=\"Models\/OrderModel.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Models\\OrderModel::__construct<\/a>"],[0,1,"<a href=\"Models\/OrderModel.php.html#20\">Philipretl\\TechnicalTestSourcetoad\\Models\\OrderModel::toArray<\/a>"],[100,1,"<a href=\"Repositories\/SQliteAddressRepository.php.html#12\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteAddressRepository::__construct<\/a>"],[100,1,"<a href=\"Repositories\/SQliteAddressRepository.php.html#16\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteAddressRepository::create<\/a>"],[0,3,"<a href=\"Repositories\/SQliteAddressRepository.php.html#50\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteAddressRepository::getAddressByCustomer<\/a>"],[0,1,"<a href=\"Repositories\/SQliteCartRepository.php.html#12\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCartRepository::__construct<\/a>"],[0,1,"<a href=\"Repositories\/SQliteCartRepository.php.html#19\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCartRepository::create<\/a>"],[0,3,"<a href=\"Repositories\/SQliteCartRepository.php.html#38\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCartRepository::getCartByCustomer<\/a>"],[0,2,"<a href=\"Repositories\/SQliteCartRepository.php.html#65\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCartRepository::mutateCart<\/a>"],[0,1,"<a href=\"Repositories\/SQliteCustomerRepository.php.html#13\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCustomerRepository::__construct<\/a>"],[0,1,"<a href=\"Repositories\/SQliteCustomerRepository.php.html#18\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCustomerRepository::create<\/a>"],[0,3,"<a href=\"Repositories\/SQliteCustomerRepository.php.html#37\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteCustomerRepository::getAllCustomers<\/a>"],[0,1,"<a href=\"Repositories\/SQliteItemRepository.php.html#14\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteItemRepository::__construct<\/a>"],[0,1,"<a href=\"Repositories\/SQliteItemRepository.php.html#20\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteItemRepository::create<\/a>"],[0,3,"<a href=\"Repositories\/SQliteItemRepository.php.html#46\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteItemRepository::getAllItemsByCart<\/a>"],[0,1,"<a href=\"Repositories\/SQliteOrderRepository.php.html#12\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteOrderRepository::__construct<\/a>"],[0,1,"<a href=\"Repositories\/SQliteOrderRepository.php.html#17\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteOrderRepository::create<\/a>"],[0,3,"<a href=\"Repositories\/SQliteOrderRepository.php.html#73\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteOrderRepository::getOrdersByCustomer<\/a>"],[0,1,"<a href=\"Repositories\/SQliteOrderRepository.php.html#105\">Philipretl\\TechnicalTestSourcetoad\\Repositories\\SQliteOrderRepository::getOrder<\/a>"],[0,1,"<a href=\"Resources\/UserDataSource.php.html#9\">Philipretl\\TechnicalTestSourcetoad\\Resources\\UserDataSource::getValues<\/a>"],[100,1,"<a href=\"Services\/ColombianCheckout.php.html#16\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianCheckout::__construct<\/a>"],[100,2,"<a href=\"Services\/ColombianCheckout.php.html#24\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianCheckout::calculatePrices<\/a>"],[100,1,"<a href=\"Services\/ColombianCheckout.php.html#49\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianCheckout::finishCheckoutProcess<\/a>"],[100,1,"<a href=\"Services\/ColombianShippingService.php.html#10\">Philipretl\\TechnicalTestSourcetoad\\Services\\ColombianShippingService::calculateShippingRate<\/a>"],[100,1,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#15\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::__construct<\/a>"],[0,2,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#17\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::normalize<\/a>"],[0,4,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#35\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::fillIncompleteValues<\/a>"],[0,2,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#47\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::orderKeys<\/a>"],[0,5,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#54\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::convertToEasyKeys<\/a>"],[0,1,"<a href=\"Utils\/ConsoleTableNormalizer.php.html#75\">Philipretl\\TechnicalTestSourcetoad\\Utils\\ConsoleTableNormalizer::cutKey<\/a>"],[100,1,"<a href=\"Utils\/SorterByKeys.php.html#14\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys::__construct<\/a>"],[0,1,"<a href=\"Utils\/SorterByKeys.php.html#16\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys::sortArray<\/a>"],[0,8,"<a href=\"Utils\/SorterByKeys.php.html#26\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys::customQuicksort<\/a>"],[0,3,"<a href=\"Utils\/SorterByKeys.php.html#67\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys::getCompletedKey<\/a>"],[0,2,"<a href=\"Utils\/SorterByKeys.php.html#79\">Philipretl\\TechnicalTestSourcetoad\\Utils\\SorterByKeys::tiebreaker<\/a>"],[0,3,"<a href=\"Traits\/KeysTrait.php.html#7\">Philipretl\\TechnicalTestSourcetoad\\Traits\\KeysTrait::getAllKeys<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
